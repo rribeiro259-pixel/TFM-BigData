@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Modelo de Predicción</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Para uso sin Flask -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="app-header">
+        <div class="app-header-inner">
+            <h1>Demo Modelo de Machine Learning</h1>
+            <p class="app-subtitle">
+                Ingresa o carga un texto para enviarlo al modelo y visualizar el resultado del análisis.
+            </p>
+        </div>
+    </header>
+
+    <main class="app-main">
+        <!-- PANEL IZQUIERDO: TEXTO + ARCHIVO -->
+        <section class="card card-form">
+            <h2>Entrada de texto</h2>
+            <p class="card-description">
+                Escribe o pega el texto que deseas analizar, o bien sube un archivo para analizar.
+            </p>
+
+            <!-- Cuando conectes Flask: action="/" method="POST" -->
+            <form class="form-grid" method="post" enctype="multipart/form-data">
+                <!-- Textarea que ocupa todo el ancho -->
+                <div class="form-group form-group-full">
+                    <label for="input_text">Texto a analizar</label>
+                    <textarea id="input_text" name="input_text"
+                              rows="8"
+                              placeholder="Escribe o pega aquí el texto a analizar..."></textarea>
+                    <span class="helper-text">
+                        Si prefieres, también puedes subir un archivo y luego mandar a analizar.
+                    </span>
+                </div>
+
+                <!-- Input de archivo oculto, el botón es la etiqueta -->
+                <input type="file"
+                       id="file_input"
+                       name="file_input"
+                       class="file-input-hidden"
+                       accept=".txt,.csv,.pdf,.doc,.docx">
+
+                <div class="form-actions">
+                    <!-- Botón para abrir el selector de archivo -->
+                    <label for="file_input" class="btn-secondary btn-file">
+                        Subir archivo
+                    </label>
+
+                    <!-- Aquí podrías mostrar el nombre del archivo con JS más adelante -->
+                    <!-- <span id="file-name" class="file-name">Ningún archivo seleccionado</span> -->
+
+                    <!-- Botón principal para mandar a analizar -->
+                    <button type="submit" class="btn-primary">
+                        Mandar a analizar
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <!-- PANEL DERECHO: RESULTADOS -->
+        <section class="card card-result">
+            <h2>Resultado del análisis</h2>
+            <p class="card-description">
+                Aquí se mostrará la salida del modelo después de procesar el texto introducido o el archivo cargado.
+            </p>
+
+            <!-- Cuando conectes Flask puedes volver a meter la lógica Jinja aquí -->
+            <div class="result-placeholder">
+                <p>Envía un texto o archivo para ver el resultado del análisis en este panel.</p>
+            </div>
+
+            <div class="model-meta">
+                <h3>Información del modelo</h3>
+                <ul>
+                    <li><strong>Tipo de modelo:</strong> (Clasificación / Análisis de sentimiento / etc.)</li>
+                    <li><strong>Versión:</strong> v1.0</li>
+                    <li><strong>Entrenado con:</strong> Dataset de ejemplo</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer class="app-footer">
+        <p>Proyecto de demostración · Máster Big Data &amp; Analytics</p>
+    </footer>
+</body>
+</html>

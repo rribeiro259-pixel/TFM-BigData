@@ -1,0 +1,290 @@
+/* Reset básico */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --bg-body: #0f172a;
+    --bg-surface: #0b1120;
+    --bg-card: #020617;
+    --accent: #38bdf8;
+    --accent-soft: rgba(56, 189, 248, 0.15);
+    --accent-strong: #0ea5e9;
+    --text-main: #e5e7eb;
+    --text-muted: #9ca3af;
+    --border-subtle: #1f2937;
+    --danger: #f97373;
+    --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.8);
+    --radius-lg: 18px;
+    --radius-full: 999px;
+    --transition-fast: 0.18s ease-out;
+    --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    font-family: var(--font-main);
+    background: radial-gradient(circle at top left, #1d2538, #020617 55%);
+    color: var(--text-main);
+    display: flex;
+    flex-direction: column;
+}
+
+/* HEADER */
+.app-header {
+    border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+    backdrop-filter: blur(12px);
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.4));
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.app-header-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 18px 20px;
+}
+
+.app-header h1 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+}
+
+.app-subtitle {
+    font-size: 0.95rem;
+    margin-top: 4px;
+    color: var(--text-muted);
+}
+
+/* MAIN LAYOUT */
+.app-main {
+    flex: 1;
+    max-width: 1080px;
+    margin: 24px auto 32px;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+    gap: 20px;
+}
+
+@media (max-width: 840px) {
+    .app-main {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+/* CARDS (FORM + RESULTADO) */
+.card {
+    background: radial-gradient(circle at top left, rgba(148, 163, 184, 0.18), rgba(15, 23, 42, 0.96));
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(148, 163, 184, 0.25);
+    padding: 20px 20px 22px;
+    box-shadow: var(--shadow-soft);
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    inset: -40%;
+    opacity: 0.05;
+    background: radial-gradient(circle at top, var(--accent-strong), transparent 60%);
+    pointer-events: none;
+}
+
+.card h2 {
+    font-size: 1.1rem;
+    margin-bottom: 6px;
+}
+
+.card-description {
+    font-size: 0.9rem;
+    margin-bottom: 16px;
+    color: var(--text-muted);
+}
+
+/* GRID DEL FORMULARIO */
+.form-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px 16px;
+}
+
+/* GRUPO DE FORMULARIO COMPLETO */
+.form-group-full {
+    grid-column: 1 / -1;
+}
+
+/* LABELS */
+label {
+    font-size: 0.86rem;
+    font-weight: 500;
+    color: #e5e7eb;
+}
+
+/* INPUTS */
+input[type="number"],
+input[type="text"],
+textarea {
+    background-color: rgba(15, 23, 42, 0.95);
+    border-radius: 10px;
+    border: 1px solid rgba(148, 163, 184, 0.35);
+    padding: 10px 12px;
+    font-size: 0.9rem;
+    color: var(--text-main);
+    outline: none;
+    width: 100%;
+    transition: border-color var(--transition-fast),
+                box-shadow var(--transition-fast),
+                transform 0.08s ease-out;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 160px;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: rgba(148, 163, 184, 0.65);
+}
+
+input:focus,
+textarea:focus {
+    border-color: var(--accent-strong);
+    box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.6);
+    transform: translateY(-1px);
+}
+
+.helper-text {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+}
+
+/* BOTONES */
+.form-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 4px;
+}
+
+button,
+.btn-secondary,
+.btn-primary,
+.btn-file {
+    border: none;
+    border-radius: var(--radius-full);
+    padding: 9px 18px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: transform 0.08s ease-out,
+                box-shadow var(--transition-fast),
+                background-color var(--transition-fast),
+                opacity var(--transition-fast);
+    white-space: nowrap;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+    color: #0b1120;
+    box-shadow: 0 10px 25px rgba(56, 189, 248, 0.4);
+}
+
+.btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 16px 30px rgba(56, 189, 248, 0.55);
+}
+
+.btn-secondary,
+.btn-file {
+    background: rgba(15, 23, 42, 0.9);
+    color: var(--text-muted);
+    border: 1px solid rgba(148, 163, 184, 0.4);
+}
+
+.btn-secondary:hover,
+.btn-file:hover {
+    background: rgba(15, 23, 42, 0.7);
+    color: #e5e7eb;
+}
+
+/* INPUT DE ARCHIVO OCULTO */
+.file-input-hidden {
+    display: none;
+}
+
+/* RESULTADOS */
+.result-placeholder {
+    margin-top: 12px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    border: 1px dashed rgba(148, 163, 184, 0.4);
+    font-size: 0.88rem;
+    color: var(--text-muted);
+}
+
+.result-box {
+    margin-top: 10px;
+    padding: 14px 14px 16px;
+    border-radius: 14px;
+    background: radial-gradient(circle at top left, var(--accent-soft), rgba(15, 23, 42, 0.95));
+    border: 1px solid rgba(56, 189, 248, 0.5);
+    backdrop-filter: blur(10px);
+}
+
+.result-label {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+}
+
+.result-value {
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+/* INFO DEL MODELO */
+.model-meta {
+    margin-top: 18px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(148, 163, 184, 0.25);
+}
+
+.model-meta h3 {
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+    color: #e5e7eb;
+}
+
+.model-meta ul {
+    list-style: none;
+    font-size: 0.84rem;
+    color: var(--text-muted);
+}
+
+.model-meta li + li {
+    margin-top: 2px;
+}
+
+/* FOOTER */
+.app-footer {
+    text-align: center;
+    padding: 10px 20px 18px;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    border-top: 1px solid rgba(148, 163, 184, 0.25);
+    background: rgba(15, 23, 42, 0.9);
+}
